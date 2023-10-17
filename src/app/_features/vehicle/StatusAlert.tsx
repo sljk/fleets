@@ -17,7 +17,7 @@ export const StatusAlert = ({ status }: { status: VehicleStatus }) => {
             <div className="self-center">
               <span className={`font-medium ${text}`}>{status.title}</span>
               <div>
-                <p className={`mt-2 sm:text-sm ${text}`}>{status.text}</p>
+                <p className={`mt-1 sm:text-sm ${text}`}>{status.text}</p>
               </div>
             </div>
           </div>

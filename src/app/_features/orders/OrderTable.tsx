@@ -88,13 +88,22 @@ export const OrderTable = ({ data }: Props) => {
         <table className="w-full table-auto text-left text-sm">
           <thead className="border-b bg-gray-50 font-medium text-gray-600">
             <tr>
-              <th className="px-6 py-3" onClick={() => changeSort("vehicle")}>
+              <th
+                className="cursor-pointer px-6 py-3"
+                onClick={() => changeSort("vehicle")}
+              >
                 Vehicle
               </th>
-              <th className="px-6 py-3" onClick={() => changeSort("status")}>
+              <th
+                className="cursor-pointer px-6 py-3"
+                onClick={() => changeSort("status")}
+              >
                 Status
               </th>
-              <th className="px-6 py-3" onClick={() => changeSort("createdAt")}>
+              <th
+                className="cursor-pointer px-6 py-3"
+                onClick={() => changeSort("createdAt")}
+              >
                 Start time
               </th>
               <th className="px-6 py-3">Progress</th>
