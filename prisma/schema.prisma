@@ -2,19 +2,58 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    @@index([name])
+  @@index([name])
+}
+
+model Vehicle {
+  id            Int             @id @default(autoincrement())
+  name          String
+  model         String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  VehicleStatus VehicleStatus[]
+  VehicleOrder  VehicleOrder[]
+
+  @@index([name])
+}
+
+model VehicleStatus {
+  id        Int      @id @default(autoincrement())
+  title     String
+  text      String
+  variant   String
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+  vehicleId Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([vehicleId])
+}
+
+model VehicleOrder {
+  id        Int      @id @default(autoincrement())
+  title     String
+  text      String
+  variant   String
+  status    String
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+  vehicleId Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([vehicleId])
 }
