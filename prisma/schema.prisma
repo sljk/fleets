@@ -25,8 +25,9 @@ model Vehicle {
   model         String
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  VehicleStatus VehicleStatus[]
-  VehicleOrder  VehicleOrder[]
+  img           String          @default("https://pics.clipartpng.com/midle/Car_PNG_Clip_Art-1339.png")
+  vehicleStatus VehicleStatus[]
+  vehicleOrder  VehicleOrder[]
 
   @@index([name])
 }

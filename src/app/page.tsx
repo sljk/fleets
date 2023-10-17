@@ -1,65 +1,44 @@
 import Link from "next/link";
-
-import { CreatePost } from "~/app/_components/create-post";
 import { api } from "~/trpc/server";
 
 export default async function Home() {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
+  const data = await api.vehicle.getAll.query();
 
   return (
-    <main className="text-blue flex min-h-screen flex-col items-center  justify-center from-[#2e026d] to-[#15162c]">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+    <main className="max-w-screen-xl px-4 md:px-8">
+      <div className="column flex  flex-col items-start gap-8">
+        <div className="items-start justify-between md:flex">
+          <div className="flex flex-col">
+            <h3 className="text-xl font-bold text-gray-800 sm:text-2xl">
+              Vehicles
+            </h3>
+            <p className="mt-2 text-gray-600">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
-          </p>
-        </div>
-
-        <CrudShowcase />
+        <ul className="flex  gap-4">
+          {data.map((vehicle) => (
+            <li key={vehicle.id}>
+              <Link
+                className="flex items-center gap-2 border px-5 hover:bg-gray-50"
+                href={`/vehicle/${vehicle.name}`}
+              >
+                <img
+                  src={vehicle.img}
+                  alt={vehicle.name}
+                  className="h-24 w-24 rounded-md object-contain"
+                />
+                <span className="flex flex-col text-gray-500">
+                  {vehicle.name}
+                  <span className="text-xs">{vehicle.model}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
-  );
-}
-
-async function CrudShowcase() {
-  const latestPost = await api.post.getLatest.query();
-
-  return (
-    <div className="w-full max-w-xs">
-      {latestPost ? (
-        <p className="truncate">Your most recent post: {latestPost.name}</p>
-      ) : (
-        <p>You have no posts yet.</p>
-      )}
-
-      <CreatePost />
-    </div>
   );
 }
