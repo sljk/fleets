@@ -8,10 +8,23 @@ import { ParkingSpot } from "./ParkingSpot";
 import { WashingStation } from "./WashingStation";
 import { useState } from "react";
 import { car1positions, car2positions } from "./mockPosition";
+import { api } from "~/trpc/react";
+import { useMutation } from "@tanstack/react-query";
 
-export const MapCanvas = () => {
+type Props = {
+  carName: string;
+};
+
+export const MapCanvas = ({ carName }: Props) => {
   const [car1positionIndex, setCar1positionIndex] = useState<number>(0);
   const [car2positionIndex, setCar2positionIndex] = useState<number>(0);
+
+  const utils = api.useContext();
+  const mutation = api.vehicle.crashVehicle.useMutation({
+    onSuccess: () => {
+      utils.vehicle.vehicleDetails.invalidate({ name: carName });
+    },
+  });
 
   const pushCar1 = () => {
     setCar1positionIndex((car1positionIndex + 1) % car1positions.length);
@@ -21,20 +34,32 @@ export const MapCanvas = () => {
     setCar2positionIndex((car2positionIndex + 1) % car2positions.length);
   };
 
+  const handleCrash = () => {
+    mutation.mutate({ name: carName });
+  };
+
   return (
     <>
-      <button
-        className="rounded-lg border px-3 py-1.5 text-sm text-gray-700 duration-100 hover:border-indigo-600 active:shadow-lg"
-        onClick={pushCar1}
-      >
-        Car 1 GPS position update
-      </button>
-      <button
-        className="rounded-lg border px-3 py-1.5 text-sm text-gray-700 duration-100 hover:border-indigo-600 active:shadow-lg"
-        onClick={pushCar2}
-      >
-        Car 2 GPS position update
-      </button>
+      <div className="flex gap-2">
+        <button
+          className="rounded-lg border px-3 py-1.5 text-sm text-gray-700 duration-100 hover:border-indigo-600 active:shadow-lg"
+          onClick={pushCar1}
+        >
+          Car 1 GPS position update
+        </button>
+        <button
+          className="rounded-lg border px-3 py-1.5 text-sm text-gray-700 duration-100 hover:border-indigo-600 active:shadow-lg"
+          onClick={pushCar2}
+        >
+          Car 2 GPS position update
+        </button>
+        <button
+          className="rounded-lg border px-3 py-1.5 text-sm text-gray-700 duration-100 hover:border-indigo-600 active:shadow-lg"
+          onClick={handleCrash}
+        >
+          Crash car {carName}
+        </button>
+      </div>
       <div style={{ width: 700, height: 600 }} className=" bg-gray-200">
         <Canvas>
           <ambientLight intensity={0.9} />
@@ -59,9 +84,15 @@ export const MapCanvas = () => {
           />
           {/* {/* <Car color="red" position={[2, 1, 0]} rotation={[0, 0, 0]} /> */}
           <Car
-            color="pink"
+            color="tomato"
             mockPositions={car2positions}
             positionIndex={car2positionIndex}
+          />
+
+          <Car
+            color="turquoise"
+            mockPositions={[[-0.8, 3, 0, 0, 0, 0]]}
+            positionIndex={0}
           />
 
           <Wall />
