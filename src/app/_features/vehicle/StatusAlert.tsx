@@ -12,7 +12,10 @@ export const StatusAlert = ({ status }: { status: VehicleStatus }) => {
         >
           <div className="flex gap-3">
             <div>
-              <StatusIcon variant={status.variant} className="h-6 w-6" />
+              <StatusIcon
+                variant={status.variant}
+                className={`${text} h-6 w-6`}
+              />
             </div>
             <div className="self-center">
               <span className={`font-medium ${text}`}>{status.title}</span>

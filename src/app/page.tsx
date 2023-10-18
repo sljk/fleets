@@ -22,7 +22,9 @@ export default async function Home() {
           {data.map((vehicle) => (
             <li key={vehicle.id}>
               <Link
-                className="flex items-center gap-2 border px-5 hover:bg-gray-50"
+                className={`flex items-center gap-2 border ${getColors(
+                  vehicle.vehicleOrder[0]?.variant,
+                )} px-5 hover:bg-gray-50`}
                 href={`/vehicle/${vehicle.name}`}
               >
                 <img
@@ -42,3 +44,16 @@ export default async function Home() {
     </main>
   );
 }
+
+const getColors = (status?: string) => {
+  if (!status) return "";
+
+  if (status === "warning") {
+    return ["border-yellow-300", "bg-yellow-50", "text-yellow-800"].join(" ");
+  }
+  if (status === "error") {
+    return ["border-red-300", "bg-red-50", "text-red-800"].join(" ");
+  }
+
+  return ["border-green-300", "bg-green-50", "text-green-800"].join(" ");
+};

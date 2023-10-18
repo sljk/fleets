@@ -1,5 +1,5 @@
 import { ErrorIcon } from "../icons/ErrorIcon";
-import { SuccessIcon } from "../icons/SuccessIcon";
+import { BadgeCheck } from "lucide-react";
 import { WarningIcon } from "../icons/WarningIcon";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export const StatusIcon = ({ className, variant }: Props) => {
   if (variant === "error") return <ErrorIcon className={className} />;
 
-  if (variant === "success") return <SuccessIcon className={className} />;
+  if (variant === "success") return <BadgeCheck className={className} />;
 
   return <WarningIcon className={className} />;
 };

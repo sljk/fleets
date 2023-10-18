@@ -6,6 +6,9 @@ export const vehicleRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.db.vehicle.findMany({
       orderBy: { createdAt: "desc" },
+      include: {
+        vehicleOrder: true,
+      },
     });
   }),
 
