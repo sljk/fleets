@@ -32,9 +32,9 @@ export default async function Home() {
                   alt={vehicle.name}
                   className="h-24 w-24 rounded-md object-contain"
                 />
-                <span className="flex flex-col text-gray-500">
+                <span className="flex flex-col ">
                   {vehicle.name}
-                  <span className="text-xs">{vehicle.model}</span>
+                  <span className="text-xs text-gray-500">{vehicle.model}</span>
                 </span>
               </Link>
             </li>

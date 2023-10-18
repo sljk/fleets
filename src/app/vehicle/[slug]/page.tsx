@@ -12,7 +12,7 @@ export default async function Vehicle({
   return (
     <div className="max-w-screen-xl px-4 md:px-8">
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold text-gray-800 sm:text-2xl">
+        <h2 className="vehicle-title text-xl font-bold text-gray-800 sm:text-2xl">
           Vehicle {params.slug}
         </h2>
         <p className="mt-2 text-gray-500">{data?.model}</p>
