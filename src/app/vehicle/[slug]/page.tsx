@@ -45,7 +45,7 @@ export default async function Vehicle({
             </div>
           </div>
         </div>
-        <div className="flex-1">
+        <div className="flex flex-1 flex-col items-start gap-2">
           <MapCanvas />
         </div>
       </div>
