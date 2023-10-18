@@ -8,7 +8,7 @@ export const Navigation = () => {
 
   return (
     <nav className="md:text-sm` bg-white pb-5">
-      <div className="mx-auto max-w-screen-xl items-center gap-x-14 px-4 md:flex md:px-8">
+      <div className="gap-x-14 px-4 md:flex md:px-8">
         <div className="flex items-center justify-between py-5 md:block">
           <a>
             <img

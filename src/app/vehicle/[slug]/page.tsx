@@ -1,3 +1,4 @@
+import { MapCanvas } from "~/app/_features/map/MapCanvas";
 import { OrderItem } from "~/app/_features/vehicle/OrderItem";
 import { StatusAlert } from "~/app/_features/vehicle/StatusAlert";
 import { api } from "~/trpc/server";
@@ -10,14 +11,14 @@ export default async function Vehicle({
   const data = await api.vehicle.vehicleDetails.query({ name: params.slug });
 
   return (
-    <div className="max-w-screen-xl px-4 md:px-8">
+    <div className="px-4 md:px-8">
       <div className="flex flex-col">
         <h2 className="vehicle-title text-xl font-bold text-gray-800 sm:text-2xl">
           Vehicle {params.slug}
         </h2>
         <p className="mt-2 text-gray-500">{data?.model}</p>
       </div>
-      <div className="flex gap-4">
+      <div className="flex justify-between gap-4">
         <div className="column flex flex-1 flex-col items-center gap-8">
           <div className="items-start justify-between md:flex"></div>
           <img
@@ -44,7 +45,9 @@ export default async function Vehicle({
             </div>
           </div>
         </div>
-        <div className="flex-1">graph</div>
+        <div className="flex-1">
+          <MapCanvas />
+        </div>
       </div>
     </div>
   );
