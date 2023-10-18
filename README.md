@@ -1,3 +1,31 @@
+# Starting the app
+
+Install deps
+
+```
+npm i
+```
+
+Open db:studio to add data to database manually (1 Vehicle is enogh to test out the app). I did not make a seed file for database
+
+```
+npm run db:studio
+```
+
+Start the app
+
+```
+npm run dev
+```
+
+Run e2e tests
+
+```
+npm run cypress:open
+```
+
+And continue with cypress UI
+
 # Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
