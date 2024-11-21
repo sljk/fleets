@@ -12,10 +12,7 @@ export default async function Home() {
             <h3 className="text-xl font-bold text-gray-800 sm:text-2xl">
               Vehicles
             </h3>
-            <p className="mt-2 text-gray-600">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
+            <p className="mt-2 text-gray-600">List of available vehicles</p>
           </div>
         </div>
         <ul className="flex  gap-4">

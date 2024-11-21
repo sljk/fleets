@@ -13,8 +13,7 @@ export default async function Orders() {
               Vehicle orders
             </h3>
             <p className="mt-2 text-gray-600">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
+              List of vehicle jobs that have been ordered.
             </p>
           </div>
         </div>
